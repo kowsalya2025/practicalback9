@@ -1,0 +1,14 @@
+{% extends 'jobs/base.html' %}
+{% block content %}
+<h2>Register</h2>
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{ uform.as_p }}
+  <div class="form-check">
+    <input type="checkbox" name="is_employer" id="is_employer" class="form-check-input">
+    <label for="is_employer" class="form-check-label">Register as Employer?</label>
+  </div>
+  {{ pform.as_p }}
+  <button class="btn btn-primary">Register</button>
+</form>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'jobs/base.html' %}
+{% block content %}
+<h2>Employer Dashboard</h2>
+<h4>Your Jobs</h4>
+<ul>
+  {% for job in jobs %}
+    <li>{{ job.title }} — <a href="{% url 'job_detail' job.pk %}">View</a></li>
+  {% endfor %}
+</ul>
+
+<h4>Applications</h4>
+<table class="table">
+  <thead><tr><th>Job</th><th>Seeker</th><th>Status</th><th>Actions</th></tr></thead>
+  <tbody>
+    {% for app in applications %}
+    <tr>
+      <td>{{ app.job.title }}</td>
+      <td>{{ app.seeker.user.get_full_name }} ({{ app.seeker.user.username }})</td>
+      <td>{{ app.status }}</td>
+      <td>
+        <a href="{% url 'shortlist_application' app.id %}" class="btn btn-sm btn-warning">Shortlist</a>
+        <a href="{% url 'schedule_interview' app.id %}" class="btn btn-sm btn-info">Schedule Interview</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

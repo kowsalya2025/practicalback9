@@ -1,0 +1,13 @@
+{% extends 'jobs/base.html' %}
+{% block content %}
+<h2>Your Profile</h2>
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{ pform.as_p }}
+  <button class="btn btn-primary">Update Profile</button>
+</form>
+
+{% if profile.resume %}
+  <p>Current resume: <a href="{{ profile.resume.url }}" target="_blank">Download</a></p>
+{% endif %}
+{% endblock %}
